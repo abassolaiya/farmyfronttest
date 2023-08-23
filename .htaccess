@@ -1,9 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-    <system.webServer>
-        <httpErrors errorMode="Custom" existingResponse="Replace">
-            <remove statusCode="404" subStatusCode="-1" />
-            <error statusCode="404" path="/" responseMode="ExecuteURL" />
-        </httpErrors>
-    </system.webServer>
-</configuration>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^.*$ / [L,QSA]
