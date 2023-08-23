@@ -1,4 +1,9 @@
-Options -MultiViews
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ index.html [QSA,L]
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <system.webServer>
+        <httpErrors errorMode="Custom" existingResponse="Replace">
+            <remove statusCode="404" subStatusCode="-1" />
+            <error statusCode="404" path="/" responseMode="ExecuteURL" />
+        </httpErrors>
+    </system.webServer>
+</configuration>
