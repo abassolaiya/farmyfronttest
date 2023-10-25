@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.6d383402.css",
-    "main.js": "/static/js/main.99fcb228.js",
+    "main.css": "/static/css/main.cb7a8891.css",
+    "main.js": "/static/js/main.61f80d81.js",
     "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
     "static/media/grocshop.jpg": "/static/media/grocshop.3aae1bcd39c257cf946f.jpg",
     "static/media/lfarm.jpg": "/static/media/lfarm.7153b9ca1dc170339362.jpg",
@@ -13,12 +13,12 @@
     "static/media/money.jpeg": "/static/media/money.a48d31bb2b2368128e34.jpeg",
     "static/media/FARMY EMB green..png": "/static/media/FARMY EMB green..4ebf4f7867bd81a1a1bb.png",
     "index.html": "/index.html",
-    "main.6d383402.css.map": "/static/css/main.6d383402.css.map",
-    "main.99fcb228.js.map": "/static/js/main.99fcb228.js.map",
+    "main.cb7a8891.css.map": "/static/css/main.cb7a8891.css.map",
+    "main.61f80d81.js.map": "/static/js/main.61f80d81.js.map",
     "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6d383402.css",
-    "static/js/main.99fcb228.js"
+    "static/css/main.cb7a8891.css",
+    "static/js/main.61f80d81.js"
   ]
 }
