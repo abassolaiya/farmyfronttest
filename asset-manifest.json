@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.cb7a8891.css",
-    "main.js": "/static/js/main.61f80d81.js",
+    "main.css": "/static/css/main.4fcb2f9e.css",
+    "main.js": "/static/js/main.1801705a.js",
     "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
-    "static/media/grocshop.jpg": "/static/media/grocshop.3aae1bcd39c257cf946f.jpg",
-    "static/media/lfarm.jpg": "/static/media/lfarm.7153b9ca1dc170339362.jpg",
-    "static/media/back.jpg": "/static/media/back.6545eea463304f284336.jpg",
-    "static/media/llog.jpg": "/static/media/llog.82ee6406590d8a0d34cc.jpg",
-    "static/media/logistics.jpg": "/static/media/logistics.06f3c383628bee76cff1.jpg",
+    "static/media/grocshop.jpg": "/static/media/grocshop.7b68454c5f920b87ff2e.jpg",
+    "static/media/lfarm.jpg": "/static/media/lfarm.6bcb53760b837c366c34.jpg",
+    "static/media/money.jpeg": "/static/media/money.cbc16819f3ece8681689.jpeg",
+    "static/media/llog.jpg": "/static/media/llog.523d3e50e854361eb008.jpg",
+    "static/media/logistics.jpg": "/static/media/logistics.b946cc7c7a8311da1151.jpg",
     "static/media/tom.png": "/static/media/tom.cc2a8e1d8304fef0ff1c.png",
     "static/media/grain.png": "/static/media/grain.9d87c7bf7b35309a3867.png",
-    "static/media/money.jpeg": "/static/media/money.a48d31bb2b2368128e34.jpeg",
     "static/media/FARMY EMB green..png": "/static/media/FARMY EMB green..4ebf4f7867bd81a1a1bb.png",
+    "static/media/back.jpg": "/static/media/back.7aa8067818fdbbb6418e.jpg",
     "index.html": "/index.html",
-    "main.cb7a8891.css.map": "/static/css/main.cb7a8891.css.map",
-    "main.61f80d81.js.map": "/static/js/main.61f80d81.js.map",
+    "main.4fcb2f9e.css.map": "/static/css/main.4fcb2f9e.css.map",
+    "main.1801705a.js.map": "/static/js/main.1801705a.js.map",
     "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cb7a8891.css",
-    "static/js/main.61f80d81.js"
+    "static/css/main.4fcb2f9e.css",
+    "static/js/main.1801705a.js"
   ]
 }
