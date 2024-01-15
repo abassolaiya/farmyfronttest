@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.4fcb2f9e.css",
-    "main.js": "/static/js/main.1801705a.js",
+    "main.css": "/static/css/main.18a80fc3.css",
+    "main.js": "/static/js/main.ff5067b4.js",
     "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
     "static/media/grocshop.jpg": "/static/media/grocshop.7b68454c5f920b87ff2e.jpg",
     "static/media/lfarm.jpg": "/static/media/lfarm.6bcb53760b837c366c34.jpg",
@@ -13,12 +13,12 @@
     "static/media/FARMY EMB green..png": "/static/media/FARMY EMB green..4ebf4f7867bd81a1a1bb.png",
     "static/media/back.jpg": "/static/media/back.7aa8067818fdbbb6418e.jpg",
     "index.html": "/index.html",
-    "main.4fcb2f9e.css.map": "/static/css/main.4fcb2f9e.css.map",
-    "main.1801705a.js.map": "/static/js/main.1801705a.js.map",
+    "main.18a80fc3.css.map": "/static/css/main.18a80fc3.css.map",
+    "main.ff5067b4.js.map": "/static/js/main.ff5067b4.js.map",
     "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4fcb2f9e.css",
-    "static/js/main.1801705a.js"
+    "static/css/main.18a80fc3.css",
+    "static/js/main.ff5067b4.js"
   ]
 }
