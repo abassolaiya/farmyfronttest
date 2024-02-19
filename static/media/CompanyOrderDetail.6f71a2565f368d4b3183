@@ -1,0 +1,424 @@
+import { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
+
+import moment from "moment";
+import axios from "axios";
+import { UserContext } from "../context/UserContext";
+import "../styles/orderDetail.css";
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
+import FMFooter from "../Components/FMFooter";
+import ProfileMenu from "../Components/profileMenu";
+
+export default function CompanyOrderDetail() {
+  const { orderId } = useParams();
+  const [setCart] = useState([]);
+  const [orderDetail, setOrderDetail] = useState(null);
+  // const [newStatus, setNewStatus] = useState("");
+
+  useEffect(() => {
+    const fetchOrderDetail = async () => {
+      try {
+        const response = await axios.get(`/api/v1/companyorder/${orderId}`, {
+          headers: {
+            // "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        console.log(response);
+        setOrderDetail(response.data.order);
+      } catch (error) {
+        console.error("Error fetching order detail:", error);
+      }
+    };
+
+    fetchOrderDetail();
+  }, [orderId]);
+
+  const totalPrice = orderDetail?.logisticsVehicle?.price
+    ? orderDetail.totalAmount + orderDetail.logisticsVehicle?.price
+    : orderDetail?.totalAmount || 0;
+
+  const { userInfo } = useContext(UserContext);
+
+  const handleAddToCart = async (productId, quantity) => {
+    try {
+      const userLocation = await getUserLocation(); // Assuming getUserLocation is defined elsewhere
+
+      const addToCartResponse = await axios.post(
+        "/api/v1/companycart",
+        {
+          product: productId,
+          quantity,
+          userLocation,
+        },
+        {
+          headers: {
+            // "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      setCart(addToCartResponse.data.cart);
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+    }
+  };
+
+  const handleAddAllToCart = async () => {
+    try {
+      if (!orderDetail) {
+        console.error("Order detail is not available");
+        return;
+      }
+
+      for (const order of orderDetail.items) {
+        await handleAddToCart(order.product._id, order.quantity);
+      }
+
+      window.location.href = "/myprofile/MyCart";
+    } catch (error) {
+      console.error("Error adding all to cart:", error);
+    }
+  };
+
+  const getUserLocation = () => {
+    return new Promise((resolve, reject) => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            const userLocation = [latitude, longitude]; // Changed to array format
+            resolve(userLocation);
+          },
+          (error) => {
+            switch (error.code) {
+              case error.PERMISSION_DENIED:
+                console.error("User denied the request for Geolocation.");
+                reject(error);
+                break;
+              case error.POSITION_UNAVAILABLE:
+                console.error("Location information is unavailable.");
+                reject(error);
+                break;
+              case error.TIMEOUT:
+                console.error("The request to get user location timed out.");
+                reject(error);
+                break;
+              default:
+                console.error(
+                  "An unknown error occurred while retrieving user location."
+                );
+                reject(error);
+            }
+          }
+        );
+      } else {
+        console.error("Geolocation is not supported by this browser.");
+        reject(new Error("Geolocation is not supported by this browser."));
+      }
+    });
+  };
+
+  const handleStatusChange = async (userInfo, orderDetail) => {
+    if (!orderDetail) {
+      console.error("Order detail is not available");
+      return;
+    }
+    const { _id: userId } = userInfo;
+    const { _id: orderId } = orderDetail;
+
+    if (userId === orderDetail.user) {
+      try {
+        await axios.put(
+          `/api/v1/companyorder/updatestatus/${orderId}`,
+          {
+            status: "Delivered",
+          },
+          {
+            headers: {
+              // "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        const response = await axios.get(`/api/v1/companyorder/${orderId}`);
+        setOrderDetail(response.data.order);
+      } catch (error) {
+        console.error("Error updating status:", error);
+      }
+    } else if (userInfo.companyName) {
+      try {
+        await axios.put(`/api/v1/companyorder/packed/${orderId}`, {
+          headers: {
+            // "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        const response = await axios.get(`/api/v1/companyorder/${orderId}`, {
+          headers: {
+            // "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        setOrderDetail(response.data.order);
+      } catch (error) {
+        console.error("Error marking order as packed:", error);
+      }
+    } else if (userInfo.logisticsName) {
+      try {
+        await axios.put(`/api/v1/companyorder/intransit/${orderId}`, {
+          headers: {
+            // "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        const response = await axios.get(`/api/v1/companyorder/${orderId}`, {
+          headers: {
+            // "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        setOrderDetail(response.data.order);
+      } catch (error) {
+        console.error("Error marking order as in transit:", error);
+      }
+    }
+  };
+
+  const calculateTotal = (quantity, price) => {
+    return quantity * price;
+  };
+
+  return (
+    <div>
+      <Navbar />
+      <div className="profile">
+        <ProfileMenu />
+        {orderDetail && (
+          <div className="orderDetailContainer">
+            <div className="order-details">
+              <div className="heading">
+                <h3>{orderDetail._id}</h3>
+                <button>{orderDetail.status}</button>
+              </div>
+              <div className="order-details-box">
+                <div className="order-details-item-container">
+                  {orderDetail.items.map((order) => (
+                    <div
+                      className="order-details-item"
+                      key={order.product?._id}
+                    >
+                      <div className="order-details-item-img">
+                        <img
+                          src={order.product?.images[0]}
+                          alt={order.product?.productName}
+                        />
+                      </div>
+                      <div className="order-details-item-name">
+                        <h3>{order.product?.productName}</h3>
+                        <p>
+                          {order?.quantity} {order.product?.measuringScale}
+                        </p>
+                      </div>
+                      <p className="order-details-item-quantity">
+                        {" "}
+                        {order?.quantity} x {order?.product?.price}
+                      </p>
+                      <p className="order-details-item-total">
+                        {calculateTotal(order?.quantity, order?.product?.price)}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <div className="order-details-subtotal">
+                  <h3> Item</h3>
+                  <p>{orderDetail?.items.length} item</p>
+                  <h4 className="order-details-subtotal-text">
+                    {" "}
+                    {orderDetail?.totalAmount}
+                  </h4>
+                </div>
+                <div className="order-details-logistics">
+                  <h3> Logistics cost</h3>
+                  <h4>{orderDetail?.logisticsVehicle?.price}</h4>
+                </div>
+                <div className="order-details-total">
+                  <h3>Total</h3>
+                  <h4> {totalPrice}</h4>
+                </div>
+              </div>
+              <div className="order-details-delivery">
+                <h3>Details</h3>
+                <div className="order-details-delivery-location">
+                  <h4>Delivered to</h4>
+                  <p>{orderDetail?.deliveryAddress}</p>
+                </div>
+                <div className="order-details-delivery-location">
+                  <h4>Payment method</h4>
+                  <p>{orderDetail?.paymentMethod}</p>
+                </div>
+              </div>
+              <div className="order-details-btns">
+                <div className="order-details-btn">
+                  <p>
+                    Need support?
+                    <br />
+                    chat with us
+                  </p>
+                  <p>chat</p>
+                </div>
+                <button
+                  onClick={handleAddAllToCart}
+                  className="order-details-btn2"
+                >
+                  <h3>Re-order</h3>
+                </button>
+              </div>
+              <p>.</p>
+              <button
+                className="order-details-btn3"
+                onClick={() => handleStatusChange(userInfo, orderDetail)}
+              >
+                <h3>
+                  Change Status <h5>{orderDetail?.status}</h5>
+                </h3>
+              </button>
+            </div>
+
+            <div className="order-detail-container-history">
+              <h3 className="order-detail-container-history-head">
+                Order History
+              </h3>
+              <div className="order-detail-container-history-box">
+                <div className="order-detail-container-history-box-id">
+                  <div className="order-detail-container-history-box-id-status">
+                    <h5>{orderDetail?.status}</h5>
+                    <h5 onClick={handleAddAllToCart}>
+                      <i className="bx bx-loader-alt bx-rotate-270"></i>{" "}
+                      Re-order
+                    </h5>
+                  </div>
+                  <div className="order-detail-container-history-box-id-content">
+                    <h5>#{orderDetail?._id}</h5>
+                    <p>{moment(orderDetail?.createdAt).fromNow()}</p>
+                    <p>{orderDetail?.items.length} Items</p>
+                    <h4 className="order-detail-container-history-box-id-content-location">
+                      {orderDetail?.deliveryAddress}
+                    </h4>
+                    {/* <p>Cow meatX2,pineappleX2</p> */}
+                  </div>
+                  <h4 className="order-detail-container-history-box-id-price">
+                    <span>N</span>
+                    {totalPrice}
+                  </h4>
+                </div>
+              </div>
+              <div className="order-detail-container-history-shipping">
+                <h4 className="order-detail-container-history-shipping-heading">
+                  Shipping Details
+                </h4>
+                <h4>{orderDetail.logistics?.logisticsName}</h4>
+                <p>{moment(orderDetail?.updatedAt).fromNow()}</p>
+                <i className="bx bx-qr-scan"></i>
+              </div>
+            </div>
+            <div className="mobile-view">
+              <div className="order-detail-mobile-body">
+                <div className="order-detail-mobile-reference">
+                  <h4 className="order-detail-mobile-reference-id">
+                    #{orderDetail?._id}
+                  </h4>
+                  <h4 className="order-detail-mobile-reference-date">
+                    {moment(orderDetail.createdAt).fromNow()}
+                  </h4>
+                  <h4 className="order-detail-mobile-reference-label">
+                    Delivered to
+                  </h4>
+                  <h4>{orderDetail?.deliveryAddress}</h4>
+                  <h4 className="order-detail-mobile-reference-label">
+                    {orderDetail.paymentMethod}
+                  </h4>
+                  <h4>Debit Card</h4>
+                  <h4 className="order-detail-mobile-reference-status">
+                    {orderDetail.status}
+                  </h4>
+                </div>
+                <div className="order-detail-mobile-order-box">
+                  {orderDetail.items.map((order) => (
+                    <div
+                      className="order-detail-mobile-order-box-items"
+                      key="order.product._id"
+                    >
+                      <div className="order-detail-mobile-order-box-items-name">
+                        <h4 className="">{order.product?.productName}</h4>
+                        <h3 className="order-detail-mobile-order-box-items-name-count   ">
+                          {order.quantity} {order.product?.measuringScale}
+                        </h3>
+                      </div>
+                      <h3 className="order-detail-mobile-order-box-items-price">
+                        <span> N</span>
+                        {calculateTotal(order?.quantity, order.product?.price)}
+                      </h3>
+                    </div>
+                  ))}
+                </div>
+                <div className="order-detail-mobile-total">
+                  <div className="order-detail-mobile-item-total">
+                    <h3>Item Total</h3>
+                    <h4>
+                      <span>N</span>
+                      {orderDetail.totalAmount}
+                    </h4>
+                  </div>
+                  <div className="order-detail-mobile-charges">
+                    <h3>Delivery Charges</h3>
+                    <h4>
+                      <span>N</span>
+                      {orderDetail.logisticsVehicle?.price}
+                    </h4>
+                  </div>
+                  <div className="order-detail-mobile-action">
+                    <h3>Paid</h3>
+                    <h4>
+                      <span>N</span>
+                      {totalPrice}
+                    </h4>
+                  </div>
+                </div>
+                <div
+                  className="order-details-btn3"
+                  onClick={() => handleStatusChange(userInfo, orderDetail)}
+                >
+                  <h3>Change Status</h3>
+                </div>
+
+                <div className="order-detail-mobile-support">
+                  <i className="bx bx-comment-dots"></i>
+                  <p>
+                    Need support?
+                    <br />
+                    Chat with us
+                  </p>
+                  <p className="order-detail-mobile-support-link">chat</p>
+                </div>
+                <button
+                  className="order-detail-mobile-reorder"
+                  onClick={handleAddAllToCart}
+                >
+                  Re-order
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="mfooter">
+        <FMFooter />
+      </div>
+      <Footer className="footer" />
+    </div>
+  );
+}

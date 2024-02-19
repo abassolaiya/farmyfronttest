@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.18a80fc3.css",
-    "main.js": "/static/js/main.5c327738.js",
-    "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
+    "main.css": "/static/css/main.bda28f97.css",
+    "main.js": "/static/js/main.cf981c08.js",
+    "static/js/592.0803614d.chunk.js": "/static/js/592.0803614d.chunk.js",
     "static/media/grocshop.jpg": "/static/media/grocshop.7b68454c5f920b87ff2e.jpg",
     "static/media/lfarm.jpg": "/static/media/lfarm.6bcb53760b837c366c34.jpg",
     "static/media/money.jpeg": "/static/media/money.cbc16819f3ece8681689.jpeg",
@@ -12,13 +12,14 @@
     "static/media/grain.png": "/static/media/grain.9d87c7bf7b35309a3867.png",
     "static/media/FARMY EMB green..png": "/static/media/FARMY EMB green..4ebf4f7867bd81a1a1bb.png",
     "static/media/back.jpg": "/static/media/back.7aa8067818fdbbb6418e.jpg",
+    "static/media/CompanyOrderDetail": "/static/media/CompanyOrderDetail.6f71a2565f368d4b3183",
     "index.html": "/index.html",
-    "main.18a80fc3.css.map": "/static/css/main.18a80fc3.css.map",
-    "main.5c327738.js.map": "/static/js/main.5c327738.js.map",
-    "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
+    "main.bda28f97.css.map": "/static/css/main.bda28f97.css.map",
+    "main.cf981c08.js.map": "/static/js/main.cf981c08.js.map",
+    "592.0803614d.chunk.js.map": "/static/js/592.0803614d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.18a80fc3.css",
-    "static/js/main.5c327738.js"
+    "static/css/main.bda28f97.css",
+    "static/js/main.cf981c08.js"
   ]
 }
