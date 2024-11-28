@@ -1,24 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.6c952f15.css",
-    "main.js": "/static/js/main.f7175852.js",
+    "main.css": "/static/css/main.2e26e6b6.css",
+    "main.js": "/static/js/main.90b85c8a.js",
     "static/js/787.9e9f4ffd.chunk.js": "/static/js/787.9e9f4ffd.chunk.js",
     "static/media/grocshop.jpg": "/static/media/grocshop.7b68454c5f920b87ff2e.jpg",
     "static/media/lfarm.jpg": "/static/media/lfarm.6bcb53760b837c366c34.jpg",
     "static/media/llog.jpg": "/static/media/llog.523d3e50e854361eb008.jpg",
-    "static/media/tom.png": "/static/media/tom.cc2a8e1d8304fef0ff1c.png",
     "static/media/herobg.png": "/static/media/herobg.471bbf0c185bf90142e1.png",
     "static/media/store1.jpg": "/static/media/store1.7703fcbc4dc658e14680.jpg",
     "static/media/servicesbg.png": "/static/media/servicesbg.30e782c60062a6268a52.png",
     "static/media/orderFromFarm.png": "/static/media/orderFromFarm.16b8b49d5679fb29e408.png",
     "static/media/log.jpg": "/static/media/log.dbb1e54c8b75767e610e.jpg",
-    "static/media/grain.png": "/static/media/grain.9d87c7bf7b35309a3867.png",
     "static/media/scheduleOrder.png": "/static/media/scheduleOrder.40173584ca6551b9fec9.png",
     "static/media/chooseLogistics.png": "/static/media/chooseLogistics.58212ad864c72dd2012c.png",
     "static/media/phone1.png": "/static/media/phone1.92001f9cee0747cc4032.png",
     "static/media/phone2.png": "/static/media/phone2.b4cab48d440a64fea670.png",
     "static/media/stor2.jpg": "/static/media/stor2.50a777844c00b7d4ab33.jpg",
-    "static/media/joinNow.png": "/static/media/joinNow.9d79cd3ce48436d15eee.png",
     "static/media/FARMY EMB green..png": "/static/media/FARMY EMB green..4ebf4f7867bd81a1a1bb.png",
     "static/media/downloadbg.png": "/static/media/downloadbg.af2c8d8c45486c1f42b8.png",
     "static/media/logo.png": "/static/media/logo.c2704708bc5112aebade.png",
@@ -26,6 +23,7 @@
     "static/media/CompanyOrderDetail": "/static/media/CompanyOrderDetail.6f71a2565f368d4b3183",
     "static/media/wholesellers.svg": "/static/media/wholesellers.a6e8eee037f18dbcd288b0b21c3cf9a9.svg",
     "static/media/scheduleOrder.svg": "/static/media/scheduleOrder.fc837e32b0cbd41c290389ae45d413f7.svg",
+    "static/media/chooseLogistics.svg": "/static/media/chooseLogistics.f2f3df6f19e27c598d5d90f01cd2013f.svg",
     "static/media/orderFromFarm.svg": "/static/media/orderFromFarm.f2f3df6f19e27c598d5d90f01cd2013f.svg",
     "static/media/googleicon.svg": "/static/media/googleicon.01f6a3856b4a0984d71d0e2ebbac9153.svg",
     "index.html": "/index.html",
@@ -35,15 +33,14 @@
     "static/media/locationicon.svg": "/static/media/locationicon.2facf77e21ab6dd2bc6f61f8764ef245.svg",
     "static/media/emailicon.svg": "/static/media/emailicon.08eafdd9a90a47b5c942be63c3204f35.svg",
     "static/media/appleicon.svg": "/static/media/appleicon.e0ba96634a583a02665d01c271446e6a.svg",
-    "static/media/chooseLogistics.svg": "/static/media/chooseLogistics.830a97f05f40933441006bfc243a4db6.svg",
     "static/media/storeicon.svg": "/static/media/storeicon.2e7e20aebee359aee797263bea6c4a05.svg",
     "static/media/menuicon.svg": "/static/media/menuicon.3f9a198f151bf1239eba9b2a0160072b.svg",
-    "main.6c952f15.css.map": "/static/css/main.6c952f15.css.map",
-    "main.f7175852.js.map": "/static/js/main.f7175852.js.map",
+    "main.2e26e6b6.css.map": "/static/css/main.2e26e6b6.css.map",
+    "main.90b85c8a.js.map": "/static/js/main.90b85c8a.js.map",
     "787.9e9f4ffd.chunk.js.map": "/static/js/787.9e9f4ffd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6c952f15.css",
-    "static/js/main.f7175852.js"
+    "static/css/main.2e26e6b6.css",
+    "static/js/main.90b85c8a.js"
   ]
 }
